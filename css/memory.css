@@ -1,0 +1,85 @@
+@import url('https://fonts.googleapis.com/css2?family=Gochi+Hand&family=Mali:ital,wght@0,200;0,300;0,400;0,500;0,600;0,700;1,200;1,300;1,400;1,500;1,600;1,700&display=swap');
+
+/* Top of screen information */
+
+h1 {
+    font-family: 'Mali', sans-serif;
+    font-size: 350%;
+    text-transform: uppercase;
+    text-align: center;
+    
+}
+
+
+
+
+
+/* play area */
+
+.game {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+.playarea {
+    height: 38rem;
+    width: 30rem;
+    background-color: rgb(60, 60, 60);
+    padding: 1rem;
+    margin: 0 3rem 3rem;
+    border-radius: 5px;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    align-items: center;
+    box-shadow: 10px 10px 10px 0 rgb(60 60 60 / 50%);
+}
+
+.playarea2 {
+    height: 29rem;
+    width: 29rem;
+    background-color: rgb(60, 60, 60);
+    padding: 1rem;
+    margin: 0 3rem 3rem;
+    border-radius: 5px;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    align-items: center;
+    box-shadow: 10px 10px 10px 0 rgb(60 60 60 / 50%);
+}
+
+.card {
+    height: 7rem;
+    width: 5rem;
+    padding: 1rem;
+    border-radius: 5px;
+    background-color: black;
+    font-size: 40px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.card2 {
+    height: 7rem;
+    width: 7rem;
+    padding: 1rem;
+    border-radius: 5px;
+    background-color: black;
+    font-size: 48px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+#design {
+    color: black;
+}
+.fas {
+    color: whitesmoke;
+}
+
+
+

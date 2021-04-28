@@ -24,20 +24,6 @@ h1 {
 }
 
 .playarea {
-    height: 38rem;
-    width: 30rem;
-    background-color: rgb(60, 60, 60);
-    padding: 1rem;
-    margin: 0 3rem 3rem;
-    border-radius: 5px;
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: space-around;
-    align-items: center;
-    box-shadow: 10px 10px 10px 0 rgb(60 60 60 / 50%);
-}
-
-.playarea2 {
     height: 29rem;
     width: 29rem;
     background-color: rgb(60, 60, 60);
@@ -53,18 +39,6 @@ h1 {
 
 .card {
     height: 7rem;
-    width: 5rem;
-    padding: 1rem;
-    border-radius: 5px;
-    background-color: black;
-    font-size: 40px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
-
-.card2 {
-    height: 7rem;
     width: 7rem;
     padding: 1rem;
     border-radius: 5px;
@@ -73,6 +47,20 @@ h1 {
     display: flex;
     justify-content: center;
     align-items: center;
+    transition: transform 2s;
+    transform-style: preserve-3d;
+    cursor: pointer;
+}
+
+.card:hover {
+    box-shadow: 0px 0px 10px 5px rgb(255, 220, 0)
+}
+
+.front, .back {
+    backface-visibility: hidden;
+}
+.back {
+    transform: rotateY(180deg);
 }
 
 #design {

@@ -11,12 +11,10 @@ h1 {
 }
 
 
-
-
-
 /* play area */
 
 .game {
+
     display: flex;
     justify-content: center;
     align-items: center;
@@ -24,10 +22,10 @@ h1 {
 }
 
 .playarea {
-    height: 29rem;
-    width: 29rem;
-    background-color: rgb(60, 60, 60);
-    padding: 1rem;
+    height: 39rem;
+    width: 39rem;
+    background-color: rgb(100,100,100);
+    padding: 0.5rem;
     margin: 0 3rem 3rem;
     border-radius: 5px;
     display: flex;
@@ -47,19 +45,30 @@ h1 {
     display: flex;
     justify-content: center;
     align-items: center;
-    transition: transform 2s;
+    transition: transform 0.75s;
     transform-style: preserve-3d;
     cursor: pointer;
+    transform: scale(1);
+    position: relative;
 }
 
 .card:hover {
-    box-shadow: 0px 0px 10px 5px rgb(255, 220, 0)
+    box-shadow: 0px 0px 10px 5px rgb(0, 160, 200)
 }
 
-.front, .back {
-    backface-visibility: hidden;
+.card:active {
+    transform: scale(0.95);
 }
+
+.front {
+    position: absolute;
+    backface-visibility: hidden;
+
+}
+
 .back {
+    position: absolute;
+    backface-visibility: hidden;
     transform: rotateY(180deg);
 }
 
@@ -67,8 +76,12 @@ h1 {
     color: black;
 }
 
-.fas {
+.fas, .fab {
     color: whitesmoke;
+}
+
+.fab {
+    font-size: 175%;
 }
 
 

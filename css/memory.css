@@ -2,11 +2,59 @@
 
 /* Top of screen information */
 
+body {
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background: radial-gradient(#d80000, #000000);
+}
+
+.overlay-text {
+   display: none;
+   position: fixed;
+   top: 0;
+   left: 0;
+   right: 0;
+   bottom: 0;
+   justify-content: center;
+   align-items: center;
+   z-index: 100;
+   font-family: 'Mali', sans-serif;
+   font-size: 4.5em;
+   font-weight: 750;
+   text-transform: uppercase;
+   text-align: center;
+   color: #ff2020;
+}
+
+.overlay-text.visible {
+    display: flex;
+    flex-direction: column;
+    animation: overlay-grow 500ms forwards;
+}
+
+.overlay-text-small {
+    font-size: 0.4em;
+}
+
+@keyframes overlay-grow {
+    from {
+        background-color: rgba(0, 0, 0, 0);
+        font-size: 0;
+    }
+    to {
+        background-color: rgba(0, 0, 0, 0.8);
+        font-size: 6em;
+    }
+}
+
 h1 {
     font-family: 'Mali', sans-serif;
-    font-size: 350%;
+    font-size: 4.5em;
     text-transform: uppercase;
     text-align: center;
+    color: #ff2020;
     
 }
 
@@ -21,18 +69,35 @@ h1 {
     flex-direction: column;
 }
 
+.game-info-container {
+    display: flex;
+    justify-content: space-between;
+}
+
+.game-info {
+    font-family: 'Mali', sans-serif;
+    font-size: 2.5em;
+    font-weight: 750;
+    text-transform: uppercase;
+    text-align: center;
+    margin-bottom: 0.5em;
+    color: #ff9191;
+    margin-left: 30px;
+    margin-right: 30px;
+}
+
 .playarea {
     height: 39rem;
     width: 39rem;
-    background-color: rgb(100,100,100);
+    background-color: rgb(0,0,0);
     padding: 0.5rem;
     margin: 0 3rem 3rem;
-    border-radius: 5px;
+    border-radius: 15px;
     display: flex;
     flex-wrap: wrap;
     justify-content: space-around;
     align-items: center;
-    box-shadow: 10px 10px 10px 0 rgb(60 60 60 / 50%);
+    box-shadow: 10px 10px 10px 0 rgb(0 0 0 / 50%);
 }
 
 .card {
@@ -40,24 +105,22 @@ h1 {
     width: 7rem;
     padding: 1rem;
     border-radius: 5px;
-    background-color: black;
+    border: 2px solid black;
+    background-color: white;
     font-size: 48px;
     display: flex;
     justify-content: center;
     align-items: center;
-    transition: transform 0.75s;
     transform-style: preserve-3d;
+    transition: transform 1s;
     cursor: pointer;
     transform: scale(1);
     position: relative;
 }
 
 .card:hover {
-    box-shadow: 0px 0px 10px 5px rgb(0, 160, 200)
-}
-
-.card:active {
-    transform: scale(0.95);
+    box-shadow: 0px 0px 10px 5px #d80000;
+    transform: scale(1);
 }
 
 .front {
@@ -70,6 +133,8 @@ h1 {
     position: absolute;
     backface-visibility: hidden;
     transform: rotateY(180deg);
+    
+    
 }
 
 #design {
@@ -77,12 +142,41 @@ h1 {
 }
 
 .fas, .fab {
-    color: whitesmoke;
+    color: black;
 }
 
 .fab {
     font-size: 175%;
+    border-radius: 15px;
 }
 
+/* media queries */
 
+@media (max-width: 680px) {
 
+    .playarea {
+        height: 78rem;
+        width: 19.5rem;
+    }
+}
+
+@media (max-width: 400px) {
+
+    body {
+        margin-left: 10px;
+    }
+}
+
+@media (max-width: 374px) {
+
+    body {
+        margin-left: 25px;
+    }
+}
+
+@media (max-width: 359px) {
+
+    body {
+        margin-left: 70px;
+    }
+}

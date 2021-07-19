@@ -59,6 +59,10 @@ h1 {
 }
 
 
+h4 {
+    margin: 0;
+    padding: 0;
+}
 /* play area */
 
 .game {
@@ -71,7 +75,7 @@ h1 {
 
 .game-info-container {
     display: flex;
-    justify-content: space-between;
+    justify-content: space-around;
 }
 
 .game-info {

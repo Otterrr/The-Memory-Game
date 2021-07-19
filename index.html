@@ -13,7 +13,7 @@
     <div class="game">
         <header>
             <h1>The Memory Game</h1>
-            <div class="overlay-text">
+            <div id="game-start" class="overlay-text visible">
                 Click to Start
             </div>
             <div id="game-over-text" class="overlay-text">
@@ -25,11 +25,13 @@
                 <span class="overlay-text-small">Click to Restart</span>
             </div>
             <div class="game-info-container">
-                <div class="game-info">
-                Time: <span id="time-remaining">60</span>
+                <div class="game-info"> 
+                    <h4 id="time">Time: </h4>
+                    <h4 id="time-remaining"> 60 </h4>
                 </div>
                 <div class="game-info">
-                Moves: <span id="moves">0</span>
+                    <h4 id="moves">Moves: </h4>
+                    <h4 id="counter"> 0 </h4>
                 </div>
             </div>
         </header>
@@ -37,7 +39,7 @@
 
         </section>
         <ul class="playarea">
-            <li class="card" type="heart" onclick="flip(event)">
+            <li class="card" id="1" type="heart" onclick="flip(event)">
                 <div class="front"><i class="fab fa-monero"></i></div>
                 <div class="back"><i class="fas fa-heart"></i></div>
             </li>

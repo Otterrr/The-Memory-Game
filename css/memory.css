@@ -126,8 +126,26 @@ h4 {
     position: relative;
 }
 
+.card.flip {
+    transform: rotateY(180deg);
+    box-shadow: 0px 0px 10px 5px lime;
+}
+
+
 .card:hover {
     box-shadow: 0px 0px 10px 5px #d80000;
+    transform: scale(1);
+}
+
+.card.matched {
+    box-shadow: 0px 0px 10px 5px lime;
+    transform: scale(1);
+    cursor: auto;
+    pointer-events: none;
+}
+
+.card.unmatched {
+    box-shadow: 0px 0px 10px 5px yellow;
     transform: scale(1);
 }
 

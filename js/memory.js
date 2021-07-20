@@ -1,11 +1,11 @@
-const card = document.querySelectorAll('.card');
+const cards = document.querySelectorAll('.card');
+
+var flippedCards = [];
 
 
 // Clicker Counter
-
 let moves = document.querySelectorAll('.card');
 let counter = document.querySelector('#counter');
-
 for (var i = 0; i < moves.length; i++) {
     moves[i].addEventListener('click', countUp);
 }
@@ -19,7 +19,7 @@ function countUp() {
 var timeLeft = document.getElementsByClassName('overlay-text');
 for (var i = 0; i < timeLeft.length; i++) {
     timeLeft[i].addEventListener('click', function () {
-        var timeLeft = 5;
+        var timeLeft = 60;
         var gameTimer = setInterval(function () {
             timeLeft--;
             document.getElementById('time-remaining').textContent = timeLeft;
@@ -32,16 +32,14 @@ for (var i = 0; i < timeLeft.length; i++) {
 var reset = document.getElementsByClassName('overlay-text');
 for (var i = 0; i < reset.length; i++) {
     reset[i].addEventListener('click', function () {
-        setTimeout(endScreen, 5000);
+        setTimeout(endScreen, 60000);
     });
 }
 
 
 // conditions
-
 function endScreen() {
     gameOver();
-
 }
 
 function gameOver() {
@@ -52,12 +50,6 @@ function victory() {
     document.getElementById('win-text').classList.add('visible');
 }
 
-
-`document.getElementById('game-start').addEventListener("click", function(){
-    
-});`;
-
-
 // game start
 const deck = document.querySelector(".playarea");
 
@@ -65,32 +57,23 @@ function startGame() {
     let resetFlip = document.querySelectorAll(".card");
     for (let i = 0; i < resetFlip.length; i++) {
         resetFlip[i].style.transform = "rotateY(0deg)";
+        moves = 0;
+        counter.innerHTML = moves;
+        document.getElementById("time-remaining").textContent = 60;
+        flippedCards = [];
     }
     setTimeout(function () {
         shuffle();
-        moves = 0;
-        counter.innerHTML = moves;
-        document.getElementById("time-remaining").textContent = 5;
-
-
     }, 750);
 }
 
 function ready() {
-   // let overlays = Array.from(document.getElementsByClassName('overlay'));
     let overlayTexts = Array.from(document.getElementsByClassName('overlay-text'));
-`
-    overlays.forEach(overlay => {
-        overlay.addEventListener('click', () => {
-            setTimeout(function () {
-                overlay.classList.remove('visible');
-            }, 800);
-        });
-    });
-}`
     overlayTexts.forEach(overlayText => {
         overlayText.addEventListener('click', () => {
-            overlayText.parentElement.classList.remove('visible');
+            setTimeout(function () {
+                overlayText.parentElement.classList.remove('visible');
+            }, 750);
             startGame();
         });
     });
@@ -98,30 +81,81 @@ function ready() {
 
 
 // Card randomiser
-
 function shuffle() {
-    card.forEach(card => {
+    cards.forEach(card => {
         let randomPos = Math.floor(Math.random() * 12);
         card.style.order = randomPos;
     });
 }
 
 
-// Card flip function
+// Card flip
+let hasFlippedCard = false;
+let lock = false;
+let firstCard, secondCard;
 
-function flip(event) {
-    var element = event.currentTarget;
-    if (element.className === "card") {
-        if (element.style.transform == "rotateY(180deg)") {
-            element.style.transform = "rotateY(0deg)";
+function cardFlip() {
+    if (lock) return;
+    if (this === firstCard) return;
+    if (this.className === "card") {
+        if (this.style.transform == "rotateY(180deg)") {
+            this.style.transform = "rotateY(0deg)";
         } else {
-            element.style.transform = "rotateY(180deg)";
+            this.style.transform = "rotateY(180deg)";
+        }
+        if (!hasFlippedCard) {
+            hasFlippedCard = true;
+            firstCard = this;
+        } else {
+            secondCard = this;
+
+            cardMatch();
         }
     }
 }
+//card matching
+function cardMatch() {
+    if (firstCard.type === secondCard.type) {
+        disable();
+    } else {
+        unflip();
+    }
+}
+
+function disable() {
+    firstCard.removeEventListener('click', cardFlip)
+    secondCard.removeEventListener('click', cardFlip)
+    setTimeout(() => {
+        firstCard.classList.add('matched');
+        secondCard.classList.add('matched');
+
+        cardReset();
+    }, 750);
 
 
+}
 
+function unflip() {
+    lock = true;
+    setTimeout(() => {
+        firstCard.style.transform = "rotateY(0deg)";
+        secondCard.style.transform = "rotateY(0deg)";
+
+        cardReset();
+    }, 1500);
+}
+
+function cardReset() {
+    hasFlippedCard = false;
+    lock = false;
+    firstCard = null;
+    secondCard = null;
+}
+
+cards.forEach(card => card.addEventListener('click', cardFlip));
+
+
+// Page Load
 if (document.readyState === 'loading') {
     document.addEventListener('DOMContentLoaded', ready());
 } else {

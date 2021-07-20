@@ -10,7 +10,7 @@ body {
     background: radial-gradient(#d80000, #000000);
 }
 
-.overlay-text {
+.overlay {
    display: none;
    position: fixed;
    top: 0;
@@ -28,7 +28,11 @@ body {
    color: #ff2020;
 }
 
-.overlay-text.visible {
+.overlay-text {
+    cursor: pointer;
+}
+
+.overlay.visible {
     display: flex;
     flex-direction: column;
     animation: overlay-grow 500ms forwards;

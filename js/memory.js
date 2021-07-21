@@ -106,10 +106,12 @@ function cardFlip() {
         if (!hasFlippedCard) {
             hasFlippedCard = true;
             firstCard = this;
+            firstCard.classList.add('unmatched');
         } else {
-            secondCard = this;
-
+            secondCard = this;           
+            secondCard.classList.add('unmatched');
             cardMatch();
+            countUp();
         }
     }
 }
@@ -125,23 +127,26 @@ function cardMatch() {
 function disable() {
     firstCard.removeEventListener('click', cardFlip)
     secondCard.removeEventListener('click', cardFlip)
+    lock = true;
     setTimeout(() => {
+        firstCard.classList.remove('unmatched');
+        secondCard.classList.remove('unmatched');
         firstCard.classList.add('matched');
         secondCard.classList.add('matched');
-
         cardReset();
     }, 750);
-
-
 }
 
 function unflip() {
     lock = true;
-    setTimeout(() => {
+        setTimeout(() => {
         firstCard.style.transform = "rotateY(0deg)";
         secondCard.style.transform = "rotateY(0deg)";
-
-        cardReset();
+        firstCard.classList.remove('unmatched');
+        secondCard.classList.remove('unmatched');
+            setTimeout(() => {
+            cardReset();
+        }, 400);
     }, 1500);
 }
 

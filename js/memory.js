@@ -1,11 +1,11 @@
-const cards = document.querySelectorAll('.card');
+var cards = document.querySelectorAll('.card');
 
 var flippedCards = [];
 
 
 // Clicker Counter
-let moves = document.querySelectorAll('.card');
-let counter = document.querySelector('#counter');
+var moves = document.querySelectorAll('.card');
+var counter = document.querySelector('#counter');
 
 function countUp() {
     counter.innerHTML++;
@@ -13,53 +13,48 @@ function countUp() {
 
 
 // timer
+var gameTimer;
+
 var timeLeft = document.getElementsByClassName('overlay-text');
 for (var i = 0; i < timeLeft.length; i++) {
-    timeLeft[i].addEventListener('click', function () {
+    timeLeft[i].addEventListener('click', () => {
         var timeLeft = 60;
-        var gameTimer = setInterval(function () {
+        gameTimer = setInterval(() => {
             timeLeft--;
             document.getElementById('time-remaining').textContent = timeLeft;
             if (timeLeft <= 0)
-                clearInterval(gameTimer);
+                gameOver();
         }, 1000);
-    });
-}
-
-var reset = document.getElementsByClassName('overlay-text');
-for (var i = 0; i < reset.length; i++) {
-    reset[i].addEventListener('click', function () {
-        setTimeout(endScreen, 60000);
     });
 }
 
 
 // conditions
-function endScreen() {
-    gameOver();
-}
 
 function gameOver() {
     document.getElementById('game-over-text').classList.add('visible');
+    clearInterval(gameTimer);
 }
 
 function victory() {
     document.getElementById('win-text').classList.add('visible');
+    clearInterval(gameTimer);
 }
+
 
 // Card randomiser
 function shuffle() {
     cards.forEach(card => {
-        let randomPos = Math.floor(Math.random() * 12);
+        var randomPos = Math.floor(Math.random() * 12);
         card.style.order = randomPos;
     });
 }
 
 
 // Card flip
-let hasFlippedCard = false;
-let lock = false;
-let firstCard, secondCard;
+var hasFlippedCard = false;
+var lock = false;
+var firstCard, secondCard;
 
 function cardFlip() {
     if (lock) return;
@@ -82,6 +77,8 @@ function cardFlip() {
         }
     }
 }
+
+
 //card matching
 function cardMatch() {
     if (firstCard.type === secondCard.type) {
@@ -92,15 +89,19 @@ function cardMatch() {
 }
 
 function disable() {
-    firstCard.removeEventListener('click', cardFlip)
-    secondCard.removeEventListener('click', cardFlip)
     lock = true;
     setTimeout(() => {
         firstCard.classList.remove('unmatched');
         secondCard.classList.remove('unmatched');
         firstCard.classList.add('matched');
         secondCard.classList.add('matched');
-        cardReset();
+
+        if (document.querySelectorAll(".card.matched").length === cards.length) {
+            victory();
+            clearInterval(gameTimer);
+        } else {
+            cardReset();
+        }
     }, 750);
 }
 
@@ -119,37 +120,40 @@ function unflip() {
 function cardReset() {
     hasFlippedCard = false;
     lock = false;
-    firstCard = null;
-    secondCard = null;
+    firstCard = undefined;
+    secondCard = undefined;
 }
 
 cards.forEach(card => card.addEventListener('click', cardFlip));
 
 
 // game start
-const deck = document.querySelector(".playarea");
-let card = document.querySelectorAll('.card');
+var deck = document.querySelector(".playarea");
+var card = document.querySelectorAll('.card');
+
 function startGame() {
-    let resetFlip = document.querySelectorAll(".card");
-    for (let i = 0; i < resetFlip.length; i++) {
-        resetFlip[i].style.transform = "rotateY(0deg)";
-        moves = 0;
-        counter.innerHTML = moves;
-        document.getElementById("time-remaining").textContent = 60;
-        flippedCards = [];
-    }
-    setTimeout(function () {
+    document.querySelectorAll(".card").forEach((el) => {
+        el.style.transform = "rotateY(0deg)";
+        el.classList.remove("unmatched");
+        el.classList.remove("matched");
+    });
+    moves = 0;
+    counter.innerHTML = moves;
+    document.getElementById("time-remaining").textContent = 60;
+    flippedCards = [];
+    cardReset();
+    setTimeout(() => {
         shuffle();
     }, 750);
 }
 
 function ready() {
-    let overlayTexts = Array.from(document.getElementsByClassName('overlay-text'));
+    var overlayTexts = Array.from(document.getElementsByClassName('overlay-text'));
     overlayTexts.forEach(overlayText => {
         overlayText.addEventListener('click', () => {
-            setTimeout(function () {
+            setTimeout(() => {
                 overlayText.parentElement.classList.remove('visible');
-            }, 750);
+            }, 1000);
             startGame();
         });
     });

@@ -141,13 +141,12 @@ h4 {
     box-shadow: 0px 0px 10px 5px lime;
     transform: scale(1);
     cursor: auto;
-    pointer-events: none;
 }
 
 .card.unmatched {
     box-shadow: 0px 0px 10px 5px yellow;
     transform: scale(1);
-    pointer-events: none;
+    cursor: auto;
 }
 
 .front {

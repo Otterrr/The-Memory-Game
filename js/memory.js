@@ -102,7 +102,7 @@ function disable() {
         } else {
             cardReset();
         }
-    }, 750);
+    }, 250);
 }
 
 function unflip() {
@@ -114,7 +114,7 @@ function unflip() {
         secondCard.classList.remove('unmatched');
         setTimeout(() => {}, 400);
         cardReset();
-    }, 1500);
+    }, 800);
 }
 
 function cardReset() {

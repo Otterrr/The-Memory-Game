@@ -1,3 +1,5 @@
+// jshint esversion: 6
+
 var cards = document.querySelectorAll('.card');
 
 var flippedCards = [];
@@ -17,9 +19,9 @@ var gameTimer;
 
 var timeLeft = document.getElementsByClassName('overlay-text');
 for (var i = 0; i < timeLeft.length; i++) {
-    timeLeft[i].addEventListener('click', () => {
+    timeLeft[i].addEventListener('click', function() {
         var timeLeft = 60;
-        gameTimer = setInterval(() => {
+        gameTimer = setInterval(function() {
             timeLeft--;
             document.getElementById('time-remaining').textContent = timeLeft;
             if (timeLeft <= 0)
@@ -90,7 +92,7 @@ function cardMatch() {
 
 function disable() {
     lock = true;
-    setTimeout(() => {
+    setTimeout(function() {
         firstCard.classList.remove('unmatched');
         secondCard.classList.remove('unmatched');
         firstCard.classList.add('matched');
@@ -107,12 +109,12 @@ function disable() {
 
 function unflip() {
     lock = true;
-    setTimeout(() => {
+    setTimeout(function() {
         firstCard.style.transform = "rotateY(0deg)";
         secondCard.style.transform = "rotateY(0deg)";
         firstCard.classList.remove('unmatched');
         secondCard.classList.remove('unmatched');
-        setTimeout(() => {}, 400);
+        setTimeout(function() {}, 400);
         cardReset();
     }, 800);
 }
@@ -128,8 +130,7 @@ cards.forEach(card => card.addEventListener('click', cardFlip));
 
 
 // game start
-var deck = document.querySelector(".playarea");
-var card = document.querySelectorAll('.card');
+
 
 function startGame() {
     document.querySelectorAll(".card").forEach((el) => {
@@ -142,16 +143,16 @@ function startGame() {
     document.getElementById("time-remaining").textContent = 60;
     flippedCards = [];
     cardReset();
-    setTimeout(() => {
+    setTimeout(function() {
         shuffle();
-    }, 750);
+    }, 300);
 }
 
 function ready() {
     var overlayTexts = Array.from(document.getElementsByClassName('overlay-text'));
     overlayTexts.forEach(overlayText => {
-        overlayText.addEventListener('click', () => {
-            setTimeout(() => {
+        overlayText.addEventListener('click', function() {
+            setTimeout(function() {
                 overlayText.parentElement.classList.remove('visible');
             }, 1000);
             startGame();

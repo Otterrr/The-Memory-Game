@@ -84,13 +84,13 @@ function cardFlip() {
 //card matching
 function cardMatch() {
     if (firstCard.type === secondCard.type) {
-        disable();
+        matched();
     } else {
-        unflip();
+        unmatched();
     }
 }
 
-function disable() {
+function matched() {
     lock = true;
     setTimeout(function() {
         firstCard.classList.remove('unmatched');
@@ -107,7 +107,7 @@ function disable() {
     }, 250);
 }
 
-function unflip() {
+function unmatched() {
     lock = true;
     setTimeout(function() {
         firstCard.style.transform = "rotateY(0deg)";

@@ -192,25 +192,28 @@ The user will also notice that their pointer will change from a click to a norma
 
 ### ON THE GO TESTING / PROBLEMS
 
-1. 
+1. HTML/CSS - Overall, with only a small amount of HTML & CSS being used in this project and mainly focusing on JS, I had very few problems with these two languages. I needed a reminder on how to use the flex atribute when creating my play area, but apart from that the rest was trial and error in creating the game as it is now. My media queries also required some precise measurements due to the size of the play-area.
 
-2. 
+2. COLOUR SCHEME - Whilst looking at some other examples of memory games I felt that mine was acutally quite boring. Whilst I was initially going for a simple, "modern" monochromatic look, I found that by simply adding one colour or colour range to the page it really made it more visually appealing. Overall I am much more pleased with the red look of the game to the black and white, oldy-style game that it was before.
 
-3. 
 
-4. 
+3. FLIPPING - The first function I attempted was creating a flipping effect on my cards. This went smoothly until i changed a variable that made my card spin about 10times before returning to the same side it started on. It was reverted and fixed immedietely. I added a CSS class to the cards to let me know that they had been correctly triggered and ended up keeping it but altering it into the game as a visual indication for players.
 
-5. 
+4. COUNTER - I then started on a counter that would keep track of how many moves the player had taken. I initially had it on a "onclick" which meant that it was counting every click the player was taking. I found it tricky to stop the player from repeatedly clicking on the same card whilst it was flipping or even after it had been matched. To fix this I changed the counter to count when a "matched" class was added to a card (a match happened) and removed the "onclick" function altogether. This meant that the player could not cause any bugs by clicking too much as the counter would only change when they found a correct match.
 
-6. 
+5. TIMER - I created a timer. But the timer kept starting as soon as the page was loaded. This meant that if the player was not paying attention or did not want to start the game yet, that they would miss out on some time or have to re-load the page to start the game fresh. To fix this I added the timer to the overlay and that when the player clicked on the overlay, it closed the overlay and started the timer. This was applied to each overlay, meaning that the timer would start/restart whenever the game was started for the first time or the 100th.
 
-7. 
+6. GAMEOVER FUNCTION - When creating the timer function, I did not realise I could simply add a function to the end of it and it would fire as part of the function. I therefore had created two identical timers, one that would have a timer that counted down from 60 to 0 and another that would fire my gameOver function when 60000ms had passed. I therefore simply removed the whole second function and added the gameOver() to the first function when the timeleft = 0.
 
-8. 
+7. TIMINGS - One of the main problems I had making this project was the timings. I now have a great appreciation for the setTimeout() function. As part of my gameStart() function I had the cards flip back over so that the player could play the game again. I found that when; the cards were flipping back over, the overlay was removing itself and the cards were re-shuffling for the next game, it was all happening at the same time. This meant that not only were the cards visible shuffling whilst the cards were still flipping over, causing for a bit of a visual bug and potentially giving away the positions of some of the icons, but the next game was starting before the cards had been fully shuffled. This meant that when the player clicked on their first and second card, if done fast enough, they would raplidly change place becuase they were still being shuffled. This obviously, was not intended and did not look good. To fix this, I added a delay on to the shuffle() function, allowing the cards to flip back before shuffling and a slightly longer delay to the overlay being released meaning the shuffle would finish before the player was able to start the game again. 
 
-9. 
+8. THE NEXT GAME - A bug that took me the most time to fix, research and test was being able to play the game again. By mistake I made it so my "matched" and even "unmatched" cards were no longer clickable. They were repeatedly clickable during the game, so why could I not click on them when restarted the game. After dissecting each piece of the code, it turned out that I was somehow removing the "onclick" function and also not resetting the card to its undefined state. Re-applying the event listener and resetting every card allowed the game to be replayed forever! I also removed the "matched" and "unmatched" classes which reset the pointer and removed the colours.
 
-10. 
+9. Whilst playing the card, and having my girlfriend play it a couple of times, I realised that she was playing the game at quite a fast pace and wanting to click on the next card and look for the next match before the current cards had flipped back. I therefore felt it neccesary to reduce the amount of time that the cards were flipped over for and also made there almost no delay between getting a match and being able to flip over the next card. It made sense and allowed for a much smoother and more natural playing experience. (I speak more technically about this in my POST-CONSTRUCTION testing)
+
+10. COMPATABILITY - The last thing I did before completing the project was making sure that the game would run on all browsers in all modes. I therefore removed any ES6 "const" and "let" functions and set the all where needed to "var".
+
+
 
 
 ### POST-CONTRUCTION TESTING

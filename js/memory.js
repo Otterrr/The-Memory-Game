@@ -152,7 +152,7 @@ function startGame() {
 }
 
 function ready() {
-    var overlayTexts = Array.from(document.getElementsByClassName('overlay-text'));
+    var overlayTexts = Array.prototype.slice.call(document.getElementsByClassName('overlay-text'));
     overlayTexts.forEach(function (overlayText) {
         overlayText.addEventListener('click', function () {
             setTimeout(function () {

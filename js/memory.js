@@ -1,7 +1,6 @@
 // jshint esversion: 6
 
 var cards = document.querySelectorAll('.card');
-
 var flippedCards = [];
 
 
@@ -16,23 +15,21 @@ function countUp() {
 
 // timer
 var gameTimer;
-
 var timeLeft = document.getElementsByClassName('overlay-text');
+
 for (var i = 0; i < timeLeft.length; i++) {
     timeLeft[i].addEventListener('click', function () {
         var timeLeft = 60;
         gameTimer = setInterval(function () {
             timeLeft--;
             document.getElementById('time-remaining').textContent = timeLeft;
-            if (timeLeft <= 0)
-                gameOver();
+            if (timeLeft <= 0) gameOver();
         }, 1000);
     });
 }
 
 
 // conditions
-
 function gameOver() {
     document.getElementById('game-over-text').classList.add('visible');
     clearInterval(gameTimer);
@@ -46,11 +43,12 @@ function victory() {
 
 // Card randomiser
 function shuffle() {
-  cards.forEach(function (card) {
-    var randomPos = Math.floor(Math.random() * 12);
-    card.style.order = randomPos;
-  });
+    cards.forEach(function (card) {
+        var randomPos = Math.floor(Math.random() * 12);
+        card.style.order = randomPos;
+    });
 }
+
 
 // Card flip
 var hasFlippedCard = false;
@@ -60,12 +58,14 @@ var firstCard, secondCard;
 function cardFlip() {
     if (lock) return;
     if (this === firstCard) return;
+
     if (this.className === "card") {
         if (this.style.transform == "rotateY(180deg)") {
             this.style.transform = "rotateY(0deg)";
         } else {
             this.style.transform = "rotateY(180deg)";
         }
+
         if (!hasFlippedCard) {
             hasFlippedCard = true;
             firstCard = this;
@@ -126,13 +126,11 @@ function cardReset() {
 }
 
 cards.forEach(function (card) {
-    return card.addEventListener('click', cardFlip)
+    card.addEventListener('click', cardFlip);
 });
 
 
 // game start
-
-
 function startGame() {
     document.querySelectorAll(".card").forEach(function (el) {
         el.style.transform = "rotateY(0deg)";

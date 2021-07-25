@@ -19,9 +19,9 @@ var gameTimer;
 
 var timeLeft = document.getElementsByClassName('overlay-text');
 for (var i = 0; i < timeLeft.length; i++) {
-    timeLeft[i].addEventListener('click', function() {
+    timeLeft[i].addEventListener('click', function () {
         var timeLeft = 60;
-        gameTimer = setInterval(function() {
+        gameTimer = setInterval(function () {
             timeLeft--;
             document.getElementById('time-remaining').textContent = timeLeft;
             if (timeLeft <= 0)
@@ -46,12 +46,11 @@ function victory() {
 
 // Card randomiser
 function shuffle() {
-    cards.forEach(card => {
-        var randomPos = Math.floor(Math.random() * 12);
-        card.style.order = randomPos;
-    });
+  cards.forEach(function (card) {
+    var randomPos = Math.floor(Math.random() * 12);
+    card.style.order = randomPos;
+  });
 }
-
 
 // Card flip
 var hasFlippedCard = false;
@@ -92,7 +91,7 @@ function cardMatch() {
 
 function matched() {
     lock = true;
-    setTimeout(function() {
+    setTimeout(function () {
         firstCard.classList.remove('unmatched');
         secondCard.classList.remove('unmatched');
         firstCard.classList.add('matched');
@@ -109,12 +108,12 @@ function matched() {
 
 function unmatched() {
     lock = true;
-    setTimeout(function() {
+    setTimeout(function () {
         firstCard.style.transform = "rotateY(0deg)";
         secondCard.style.transform = "rotateY(0deg)";
         firstCard.classList.remove('unmatched');
         secondCard.classList.remove('unmatched');
-        setTimeout(function() {}, 400);
+        setTimeout(function () {}, 400);
         cardReset();
     }, 800);
 }
@@ -126,14 +125,16 @@ function cardReset() {
     secondCard = undefined;
 }
 
-cards.forEach(card => card.addEventListener('click', cardFlip));
+cards.forEach(function (card) {
+    return card.addEventListener('click', cardFlip)
+});
 
 
 // game start
 
 
 function startGame() {
-    document.querySelectorAll(".card").forEach((el) => {
+    document.querySelectorAll(".card").forEach(function (el) {
         el.style.transform = "rotateY(0deg)";
         el.classList.remove("unmatched");
         el.classList.remove("matched");
@@ -143,16 +144,16 @@ function startGame() {
     document.getElementById("time-remaining").textContent = 60;
     flippedCards = [];
     cardReset();
-    setTimeout(function() {
+    setTimeout(function () {
         shuffle();
     }, 300);
 }
 
 function ready() {
     var overlayTexts = Array.from(document.getElementsByClassName('overlay-text'));
-    overlayTexts.forEach(overlayText => {
-        overlayText.addEventListener('click', function() {
-            setTimeout(function() {
+    overlayTexts.forEach(function (overlayText) {
+        overlayText.addEventListener('click', function () {
+            setTimeout(function () {
                 overlayText.parentElement.classList.remove('visible');
             }, 1000);
             startGame();

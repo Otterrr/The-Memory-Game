@@ -1,5 +1,9 @@
 // jshint esversion: 6
 
+if (window.NodeList && !NodeList.prototype.forEach) {
+    NodeList.prototype.forEach = Array.prototype.forEach;
+}
+
 var cards = document.querySelectorAll('.card');
 var flippedCards = [];
 

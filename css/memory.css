@@ -153,13 +153,13 @@ h4 {
 }
 
 .front {
-    position: fixed;
+    position: absolute;
     backface-visibility: hidden;
 
 }
 
 .back {
-    position: fixed;
+    position: absolute;
     backface-visibility: hidden;
     transform: rotateY(180deg);
 

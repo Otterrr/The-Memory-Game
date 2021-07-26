@@ -1,8 +1,5 @@
 // jshint esversion: 6
 
-if (window.NodeList && !NodeList.prototype.forEach) {
-    NodeList.prototype.forEach = Array.prototype.forEach;
-}
 
 var cards = document.querySelectorAll('.card');
 var flippedCards = [];
@@ -47,10 +44,10 @@ function victory() {
 
 // Card randomiser
 function shuffle() {
-    cards.forEach(function (card) {
+    for (var i = 0; i < cards.length; i++) {
         var randomPos = Math.floor(Math.random() * 12);
-        card.style.order = randomPos;
-    });
+        cards[i].style.order = randomPos;
+    };
 }
 
 
@@ -129,18 +126,16 @@ function cardReset() {
     secondCard = undefined;
 }
 
-cards.forEach(function (card) {
-    card.addEventListener('click', cardFlip);
-});
-
 
 // game start
 function startGame() {
-    document.querySelectorAll(".card").forEach(function (el) {
-        el.style.transform = "rotateY(0deg)";
-        el.classList.remove("unmatched");
-        el.classList.remove("matched");
-    });
+    for (var i = 0; i < cards.length; i++) {
+        cards[i].addEventListener('click', cardFlip);
+        cards[i].style.transform = "rotateY(0deg)";
+        cards[i].classList.remove("unmatched");
+        cards[i].classList.remove("matched");
+    };
+
     moves = 0;
     counter.innerHTML = moves;
     document.getElementById("time-remaining").textContent = 60;
@@ -152,15 +147,15 @@ function startGame() {
 }
 
 function ready() {
-    var overlayTexts = Array.prototype.slice.call(document.getElementsByClassName('overlay-text'));
-    overlayTexts.forEach(function (overlayText) {
-        overlayText.addEventListener('click', function () {
+    var overlayTexts = document.getElementsByClassName('overlay-text');
+    for (var i = 0; i < overlayTexts.length; i++) {
+        overlayTexts[i].addEventListener('click', function (event) {
             setTimeout(function () {
-                overlayText.parentElement.classList.remove('visible');
+                event.target.parentElement.classList.remove('visible');
             }, 1000);
             startGame();
         });
-    });
+    };
 }
 
 

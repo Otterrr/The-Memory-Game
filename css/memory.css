@@ -119,17 +119,12 @@ h4 {
     border: 2px solid black;
     background-color: white;
     font-size: 48px;
-    display: -ms-flexbox;
     display: flex;
-    -ms-flex-pack: center;
     justify-content: center;
-    -ms-flex-align: center;
     align-items: center;
     transform-style: preserve-3d;
-    -o-transition: transform 1s;
     transition: transform 1s;
     cursor: pointer;
-    -ms-transform: scale(1);
     transform: scale(1);
     position: relative;
 }

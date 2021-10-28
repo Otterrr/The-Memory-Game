@@ -179,6 +179,14 @@ h4 {
     border-radius: 15px;
 }
 
+/* cards */
+
+.heart, .tree, .cat, .star, .bike, .skull, .feather, .pizza {
+    list-style-type: space-counter;
+}
+
+
+
 /* media queries */
 
 @media (max-width: 680px) {

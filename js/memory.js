@@ -83,7 +83,7 @@ function cardFlip() {
 
 //card matching
 function cardMatch() {
-    if (firstCard.getAttribute('type') === secondCard.getAttribute('type')) {
+    if (firstCard.getAttribute('data-type') === secondCard.getAttribute('data-type')) {
         matched();
     } else {
         unmatched();
